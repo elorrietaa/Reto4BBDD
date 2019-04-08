@@ -1,4 +1,4 @@
-package modelo;
+package bbdd;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -30,16 +30,16 @@ public class Conexion {
 		
 		//String[] datos = getConnectionInfo();
 		
-		connection = null;
-		host = "localHost";
-		bd = "reto4";
-		usuario = "grupo4";
-		contrasena = "grupo4";
+		this.connection = null;
+		this.host = "localhost";
+		this.bd = "reto4";
+		this.usuario = "grupo4";
+		this.contrasena = "grupo4";
 		//host = datos[0];
 		//bd = datos[1];
 		//usuario = datos[2];
 		//contrasena = datos[3];
-		url = "jdbc:mysql://"+host+":3306/"+bd+"?"+params;
+		this.url = "jdbc:mysql://"+host+":3306/"+bd+"?"+params;
 	}
 	
 	/**
@@ -85,16 +85,25 @@ public class Conexion {
 	 * 
 	 * @return Retorna si el programa se ha podido conectar a la base de datos o no
 	 */
-	protected Connection conectar(){
-		try { connection = DriverManager.getConnection(url, usuario, contrasena); } 
-		catch (SQLException e) { throw new IllegalStateException("Cannot connect the database!", e); }
+	public Connection conectar(){
+		try {
+			connection = DriverManager.getConnection(this.url, this.usuario, this.contrasena); 
+		} 
+		catch (SQLException e) { 
+			throw new IllegalStateException("Cannot connect the database!", e); 
+		}
 		return connection;
 	}
 	/**
 	 * Desconecta el programa de la base de datos
 	 */
-	protected void desconectar(){
-		if (connection != null)
-			try {connection.close();} catch (SQLException e) {e.printStackTrace();}
+	public void desconectar(){
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
