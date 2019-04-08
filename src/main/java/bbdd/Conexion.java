@@ -19,7 +19,7 @@ public class Conexion {
 	private String contrasena;
 	private String host;
 	private String url;
-	private Connection connection = null;
+	private Connection connection;
 	
 	private final String params = "serverTimezone=UTC"; // https://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue
 	
@@ -87,10 +87,18 @@ public class Conexion {
 	 */
 	public Connection conectar(){
 		try {
-			connection = DriverManager.getConnection(this.url, this.usuario, this.contrasena); 
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			connection = DriverManager.getConnection(this.url, this.usuario , this.contrasena); 
 		} 
 		catch (SQLException e) { 
 			throw new IllegalStateException("Cannot connect the database!", e); 
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
 		}
 		return connection;
 	}
