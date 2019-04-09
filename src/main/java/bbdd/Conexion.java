@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 
 /**
  * Clase que se utiliza para establecer la conexion con la base de datos
@@ -87,18 +89,15 @@ public class Conexion {
 	 */
 	public Connection conectar(){
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			
 			connection = DriverManager.getConnection(this.url, this.usuario , this.contrasena); 
 		} 
 		catch (SQLException e) { 
+			
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Alerta se va a cerrar la aplicación debido a un error", 0);
+			System.exit(0);
 			throw new IllegalStateException("Cannot connect the database!", e); 
 			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
 		}
 		return connection;
 	}
