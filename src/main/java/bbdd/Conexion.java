@@ -96,7 +96,7 @@ public class Conexion {
 			
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Alerta se va a cerrar la aplicación debido a un error", 0);
 			System.exit(0);
-			throw new IllegalStateException("Cannot connect the database!", e); 
+			throw new IllegalStateException("Cannot connect the database!", e);
 			
 		}
 		return connection;
