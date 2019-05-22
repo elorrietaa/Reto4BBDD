@@ -30,17 +30,17 @@ public class Conexion {
 	 */
 	public Conexion() {
 		
-		//String[] datos = getConnectionInfo();
+		String[] datos = getConnectionInfo();
 		
 		this.connection = null;
-		this.host = "localhost";
+		/*this.host = "localhost";
 		this.bd = "reto4";
 		this.usuario = "grupo4";
-		this.contrasena = "grupo4";
-		//host = datos[0];
-		//bd = datos[1];
-		//usuario = datos[2];
-		//contrasena = datos[3];
+		this.contrasena = "grupo4";*/
+		host = datos[0];
+		bd = datos[1];
+		usuario = datos[2];
+		contrasena = datos[3];
 		this.url = "jdbc:mysql://"+host+":3306/"+bd+"?"+params;
 	}
 	
@@ -50,9 +50,9 @@ public class Conexion {
 	 * @return Reotrna el array de datos con los valores adecuados
 	 */
 	
-	/*public String[] getConnectionInfo() {
+	public String[] getConnectionInfo() {
 
-		String filePath = "./datosBBDD.txt";
+		String filePath = "datosBBDD.txt";
 		FileReader fileReader = null;
 		BufferedReader buffer = null;
 		String[] datos = new String[4];
@@ -80,7 +80,7 @@ public class Conexion {
 		
 		return datos;
 		
-	}*/
+	}
 	
 	/**
 	 * Comprueba la conexion con la base de datos
